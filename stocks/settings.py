@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -117,4 +118,66 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+LANGUAGE_CODE = 'en-us' #'fa-ir'
+
+TIME_ZONE = 'Asia/Tehran'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = os.environ.get('USE_TZ', "True") == "True"
+
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = ','
+NUMBER_GROUPING = (3, 3, 3)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
+
+LANGUAGES = [
+    # ('fa', _('Persian')),
+    ('en', _('English')),
+    # ('es', _('Espaniol')),
+]
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'stocks/static/')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/url/'
+
+#jalali format
+JALALI_FORMAT = os.environ.get('JALALI_FORMAT', "%Y/%m/%d")
+JALALI_DATE_DEFAULTS = {
+   'Strftime': {
+        'date': '%y/%m/%d',
+        'datetime': '%H:%M:%S _ %y/%m/%d',
+    },
+    'Static': {
+        'js': [ # prefix address is 'admin/'
+            'js/django_jalali.min.js',
+            # or
+            # 'jquery.ui.datepicker.jalali/scripts/jquery-1.10.2.min.js',
+            # 'jquery.ui.datepicker.jalali/scripts/jquery.ui.core.js',
+            # 'jquery.ui.datepicker.jalali/scripts/calendar.js',
+            # 'jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc.js',
+            # 'jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc-fa.js',
+            # 'js/main.js',
+        ],
+        'css': {
+            'all': [
+                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
+            ]
+        }
+    },
+}
