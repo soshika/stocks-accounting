@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Mine
     'stock.apps.StockConfig',
     'accounts.apps.AccountsConfig',
+    'profits.apps.ProfitsConfig',
 ]
 
 MIDDLEWARE = [
