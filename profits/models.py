@@ -15,7 +15,7 @@ class Profit(models.Model):
         (PERCENT_TYPE_MAINTAINER, _('Maintainer')),
     )
 
-    user_stock = models.ForeignKey(UserStock, on_delete=models.CASCADE)
+    user_stock = models.ForeignKey(UserStock, on_delete=models.CASCADE, related_name='user_stocks')
     host_percent = models.IntegerField(verbose_name=_('Host Percent'))
     broker_percent = models.IntegerField(verbose_name=_('Broker Percent'))
     maintainer_percent = models.IntegerField(verbose_name=_('Maintainer percent'))
