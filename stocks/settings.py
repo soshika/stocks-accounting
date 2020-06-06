@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Mine
+    'todo.apps.TodoConfig',
     'stock.apps.StockConfig',
-    'accounts.apps.AccountsConfig',
     'profits.apps.ProfitsConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
