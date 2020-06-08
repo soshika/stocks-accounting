@@ -14,7 +14,7 @@ class Account(models.Model):
         return '{} {}'.format(self.first_name, self.last_name)
 
     def __init__(self, *args, **kwargs):
-        super(self, Account).__init__(*args, **kwargs)
+        super(Account, self).__init__(*args, **kwargs)
 
     class Meta:
         verbose_name = _('Account')

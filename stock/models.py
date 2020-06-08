@@ -23,7 +23,7 @@ class Stock(models.Model):
         return self.name
 
     def __init__(self, *args, **kwargs):
-        super(self, Stock).__init__(*args, **kwargs)
+        super(Stock, self).__init__(*args, **kwargs)
 
     class Meta:
         verbose_name = _('Stock')
@@ -42,7 +42,7 @@ class UserStock(models.Model):
         return '{} - {}'.format(self.stock.name, self.user.username)
 
     def __init__(self, *args, **kwargs):
-        super(self, UserStock).__init__(*args, **kwargs)
+        super(UserStock, self).__init__(*args, **kwargs)
 
     class Meta:
         verbose_name = _('User-Stock')

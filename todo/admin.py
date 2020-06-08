@@ -6,7 +6,7 @@ from .models import ToDo
 
 @admin.register(ToDo)
 class ToDoAdmin(admin.ModelAdmin):
-    fields = ['text', 'done', 'date_created']
+    fields = ['text', 'done']
     list_display = ['text', 'done', 'date_created']
     list_filter = ['date_created', 'done']
     search_fields = ['text']

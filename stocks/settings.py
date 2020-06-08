@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Mine
+    'sms.apps.SmsConfig',
     'todo.apps.TodoConfig',
     'stock.apps.StockConfig',
     'profits.apps.ProfitsConfig',

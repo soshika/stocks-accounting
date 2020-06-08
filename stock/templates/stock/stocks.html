@@ -4,7 +4,7 @@
       {% load static %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Stock Accounting </title>
+    <title>Stocks </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -50,6 +50,7 @@
           </div>
           <div class="right-menu list-inline no-margin-bottom">
             <div class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></div>
+
             <!-- Tasks-->
             <div class="list-inline-item dropdown"><a id="navbarDropdownMenuLink2" href="http://example.com" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link tasks-toggle"><i class="icon-new-file"></i><span class="badge dashbg-3">9</span></a>
               <div aria-labelledby="navbarDropdownMenuLink2" class="dropdown-menu tasks-list"><a href="#" class="dropdown-item">
@@ -77,8 +78,9 @@
             </div>
             <!-- Tasks end-->
 
+            <!-- Megamenu end     -->
             <!-- Log out               -->
-            <div class="list-inline-item logout">                   <a id="logout" href="login.html" class="nav-link">Logout <i class="icon-logout"></i></a></div>
+            <div class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link">Logout <i class="icon-logout"></i></a></div>
           </div>
         </div>
       </nav>
@@ -86,127 +88,79 @@
     <div class="d-flex align-items-stretch">
       <!-- Sidebar Navigation-->
       <nav id="sidebar">
-        <span class="heading"></span>
         <ul class="list-unstyled">
-                <li class="active"><a href="{% url 'home' %}"> <i class="icon-home"></i>Home </a></li>
-                <li><a href="{% url 'all-stocks' %}"> <i class="icon-grid"></i>stocks </a></li>
-                <li><a href="forms.html"> <i class="icon-padnote"></i>ToDo </a></li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Invoice </a>
+                <li><a href="{% url 'home' %}"> <i class="icon-home"></i>Home </a></li>
+                <li class="active"><a href="tables.html"> <i class="icon-grid"></i>Stocks </a></li>
+                <li><a href=""> <i class="icon-home"></i>Charts </a></li>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Invoices </a>
                   <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                    <li><a href="#">Page</a></li>
+                    <li><a href="#">Page</a></li>
                     <li><a href="#">Page</a></li>
                   </ul>
                 </li>
         </ul>
+
       </nav>
       <!-- Sidebar Navigation end-->
       <div class="page-content">
-        <div class="page-header">
-          <div class="container-fluid">
-            <h2 class="h5 no-margin-bottom">Dashboard</h2>
+        <!-- Page Header-->
+        <div class="page-header no-margin-bottom">
+          <div class="container-fluid" >
+            <h2 class="h5 no-margin-bottom" style="text-align: right;font-family: 'IRANYekanMobile(FaNum)';">سهام</h2>
           </div>
         </div>
-        <section class="no-padding-top no-padding-bottom">
+        <!-- Breadcrumb-->
+        <div class="container-fluid">
+          <ul class="breadcrumb" style="direction: rtl; font-family: 'IRANYekanMobile(FaNum)';">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">خانه</a></li>
+            <li class="breadcrumb-item active">سبد سهام            </li>
+          </ul>
+        </div>
+        <section class="no-padding-top">
           <div class="container-fluid">
-            <div class="row" style="direction: rtl; font-family: 'IRANYekanMobile(FaNum)';">
-              <div class="col-md-3 col-sm-6">
-                <div class="statistic-block block">
-                  <div class="progress-details d-flex align-items-end justify-content-between">
-                    <div class="title">
-                      <div class="icon"></div><strong>سهام</strong>
-                    </div>
-                    <div class="number dashtext-1">27</div>
-                  </div>
-                  <div class="progress progress-template">
-                    <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
-                  </div>
-                </div>
-              </div>
-                <div class="col-md-3 col-sm-6">
-                <div class="statistic-block block">
-                  <div class="progress-details d-flex align-items-end justify-content-between">
-                    <div class="title">
-                      <div class="icon"></div><strong>نکات</strong>
-                    </div>
-                    <div class="number dashtext-1">4</div>
-                  </div>
-                  <div class="progress progress-template">
-                    <div role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-1"></div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="block margin-bottom-sm">
+                  <div class="title" style="text-align: right; font-family: 'IRANYekanMobile(FaNum)';"><strong>سبد سهام</strong></div>
+                  <div class="table-responsive">
+                    <table class="table table-striped" style="direction: rtl; text-align: right;">
+                      <thead>
+                        <tr style="font-family: 'IRANYekanMobile(FaNum)';">
+                          <th>#</th>
+                          <th>کاربر</th>
+                          <th>نام سهم</th>
+                          <th>قیمت</th>
+                          <th>حجم</th>
+                          <th>قیمت کل</th>
+                          <th>روز خرید</th>
+                        </tr>
+                      </thead>
+                        {% for stock in stocks %}
+                            <tbody>
+                                <tr style="font-family: 'IRANYekanMobile(FaNum)';">
+                                  <th scope="row">{{ forloop.counter }}</th>
+                                  <td>{{ stock.user.username }}</td>
+                                  <td>{{ stock.stock.name }}</td>
+                                  <td>{{ stock.stock.price }}</td>
+                                  <td>{{ stock.amount }}</td>
+                                  <td>{% widthratio stock.amount 1 stock.stock.price %}</td>
+                                  <td>{{ stock.date_created}}</td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        <section class="margin-bottom-sm">
-          <div class="container-fluid">
-            <div class="row d-flex align-items-stretch">
-              <div class="col-lg-6" style="text-align: right; font-family: 'IRANYekanMobile(FaNum)';">
-                <div class="stats-with-chart-1 block">
-                  <div class="title"> <strong class="d-block"> سرمایه گذار</strong><span class="d-block">سود کلی این ماه سرمایه گذار</span></div>
-                  <div class="row d-flex align-items-end justify-content-between">
-                    <div class="col-5">
-                      <div class="text"><strong class="d-block dashtext-3">$740</strong><span class="d-block">May 2017</span></div>
-                    </div>
-                    <div class="col-7">
-                      <div class="bar-chart chart">
-                        <canvas id="salesBarChart1"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="stats-with-chart-1 block" style="text-align: right; font-family: 'IRANYekanMobile(FaNum)';">
-                  <div class="title"> <strong class="d-block"> پیمان کار</strong><span class="d-block">سود کلی این ماه پیمان کار </span></div>
-                  <div class="row d-flex align-items-end justify-content-between">
-                    <div class="col-5">
-                      <div class="text"><strong class="d-block dashtext-2">80%</strong><span class="d-block">May 2017</span></div>
-                    </div>
-                    <div class="col-7">
-                      <div class="bar-chart chart">
-                        <canvas id="salesBarChart2"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-          <section class="no-padding-bottom">
-          <div class="container-fluid">
-            <div class="row" style="text-align: right; direction: rtl; font-family: 'IRANYekanMobile(FaNum)';">
-              <div class="col-lg-6" >
-                <div class="checklist-block block">
-                  <div class="title"><strong>لیست کار های در حال انجام</strong></div>
-                  <div class="checklist">
-                      {% for td in todo %}
-                          <div class="item d-flex align-items-center">
-                            <input type="checkbox" id="input-1" name="input-1" class="checkbox-template">
-                            <label for="input-1">{{ td.text }}</label>
-                          </div>
-                      {% endfor %}
-
-{#                    <div class="item d-flex align-items-center">#}
-{#                      <input type="checkbox" id="input-2" name="input-2" checked class="checkbox-template">#}
-{#                      <label for="input-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</label>#}
-{#                    </div>#}
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-
         <footer class="footer">
           <div class="footer__block block no-margin-bottom">
             <div class="container-fluid text-center">
-              <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-               <p class="no-margin-bottom">{% now "Y" %} &copy; <a target="_blank" href="">Anik</a>.</p>
+              <p class="no-margin-bottom">{% now "Y" %} &copy; <a target="_blank" href="https://templateshub.net">Anik</a>.</p>
             </div>
           </div>
         </footer>
@@ -219,7 +173,6 @@
     <script src="{% static 'vendor/jquery.cookie/jquery.cookie.js' %}"> </script>
     <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
     <script src="{% static 'vendor/jquery-validation/jquery.validate.min.js' %}"></script>
-    <script src="{% static 'js/charts-home.js' %}"></script>
     <script src="{% static 'js/front.js' %}"></script>
   </body>
 </html>
